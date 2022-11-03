@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Guild {
+  guildID String @id
+  welcomer WelcomerConfig?
+  verify VerifyConfig?
+  logging LoggingConfig?
+  staff StaffConfig?
+}
+
+model WelcomerConfig {
+  id BigInt @id @default(autoincrement())
+  enabled Boolean @default(false)
+  channelID String?
+  guild Guild @relation(references: [guildID], fields: [guildID])
+  guildID String @unique
+}
+
+model VerifyConfig {
+  id BigInt @id @default(autoincrement())
+  enabled Boolean @default(false)
+  memberRoleID String?
+  guild Guild @relation(references: [guildID], fields: [guildID])
+  guildID String @unique
+}
+
+model LoggingConfig {
+  id BigInt @id @default(autoincrement())
+  enabled Boolean @default(false)
+  logChannelID String?
+  guild Guild @relation(references: [guildID], fields: [guildID])
+  guildID String @unique
+}
+
+model StaffConfig {
+  id BigInt @id @default(autoincrement())
+  enabled Boolean @default(false)
+  ModRoleIDs String[] @default(["0"])
+  AdminRoleIDs String[] @default(["0"])
+  guild Guild @relation(references: [guildID], fields: [guildID])
+  guildID String @unique
+}
