@@ -1,5 +1,5 @@
 // --- Imports ---
-import { SlashCommandBuilder, CommandInteraction, Collection, PermissionResolvable, Message, Client, ChatInputCommandInteraction, Interaction, ButtonInteraction } from "discord.js"
+import { SlashCommandBuilder, CommandInteraction, Collection, PermissionResolvable, Message, Client, ChatInputCommandInteraction, Interaction, ButtonInteraction, GuildMember } from "discord.js"
 
 
 
@@ -30,6 +30,37 @@ export interface BotEvent {
     execute: (...args?) => void
 }
 
+
+
+// --- Event Types ---
+export type loggingEvent = "ban" | "kick" | "change" | "join"
+type changedSetting = "inviteManager" | "welcomer" | "verify" | "logging" | "staff"
+
+interface banEventOptions {
+    user: GuildMember,
+    bannedBy: GuildMember,
+    reason: String,
+}
+
+interface kickEventOptions {
+    user: GuildMember,
+    bannedBy: GuildMember,
+    reason: String,
+}
+
+interface changeEventOptions {
+    user: GuildMember,
+    changed: changedSetting,
+}
+
+interface joinEventOptions {
+    member: GuildMember,
+}
+
+export interface loggingEventOptions {
+    trigger: loggingEvent,
+    data: banEventOptions | kickEventOptions | changeEventOptions | joinEventOptions
+}
 
 
 // --- Other Types ---
