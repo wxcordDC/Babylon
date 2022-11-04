@@ -3,7 +3,6 @@ import { Client, Routes, SlashCommandBuilder } from "discord.js";
 import { REST } from "@discordjs/rest"
 import { readdirSync } from "fs";
 import { join } from "path";
-import { color } from "../functions";
 import { Command, SlashCommand } from "../types";
 import { logger } from "../helpers/logger";
 

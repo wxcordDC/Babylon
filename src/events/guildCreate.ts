@@ -1,8 +1,6 @@
-import { ChannelType, Client, EmbedBuilder, Guild, GuildMember, GuildTextBasedChannel } from "discord.js";
+import { Client, Guild } from "discord.js";
 import { BotEvent } from "../types";
-import { color } from "../functions";
 import { logger } from "../helpers/logger";
-import { Channel } from "diagnostics_channel";
 import { dbClient } from "../helpers/Database";
 
 const event : BotEvent = {

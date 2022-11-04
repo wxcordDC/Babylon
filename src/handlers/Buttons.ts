@@ -1,8 +1,7 @@
 // --- Imports ---
 import { Client } from "discord.js";
-import { readdir, readdirSync } from "fs";
+import { readdirSync } from "fs";
 import { join } from "path";
-import { color } from "../functions";
 import { logger } from "../helpers/logger";
 import { Button } from "../types";
 
